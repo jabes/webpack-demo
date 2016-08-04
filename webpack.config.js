@@ -1,9 +1,7 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const precss = require('precss');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const METADATA = {
   title: 'Webpack Demo',
@@ -38,15 +36,14 @@ module.exports = {
         new HtmlWebpackPlugin({
           template: path.resolve(srcPath, 'index.html'),
           filename: path.resolve(distPath, 'index.html')
-        }),
-        new LiveReloadPlugin()
+        })
     ],
     resolve: {
         extensions: ['', '.js', '.scss'],
         root: [srcPath]
     },
     postcss: function () {
-        return [precss, autoprefixer];
+        return [autoprefixer];
     },
     devServer: {
       port: METADATA.port,
