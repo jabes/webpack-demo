@@ -2,6 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('webpack-uglify-js-plugin');
 
 const METADATA = {
   title: 'Webpack Demo',
@@ -36,6 +37,18 @@ module.exports = {
         new HtmlWebpackPlugin({
           template: path.resolve(srcPath, 'index.html'),
           filename: path.resolve(distPath, 'index.html')
+        }),
+        new UglifyJsPlugin({
+          cacheFolder: path.resolve(__dirname, 'dist/cached_uglify'),
+          debug: false,
+          minimize: true,
+          sourceMap: false,
+          output: {
+            comments: false
+          },
+          compressor: {
+            warnings: false
+          }
         })
     ],
     resolve: {
