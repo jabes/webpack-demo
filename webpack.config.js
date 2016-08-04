@@ -1,16 +1,11 @@
 const path = require("path");
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const METADATA = {
-    title: 'Webpack Demo',
-    baseUrl: '/'
-};
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
-    metadata: METADATA,
     context: path.join(__dirname, "src"),
     entry: "assets/js/app.js",
     output: {
@@ -19,13 +14,15 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.css$/, loader: "style!css!postcss" },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!postcss!sass") }
+          { test: /\.js$/, exclude: /(node_modules)/, loader: 'babel', query: { presets: ['es2015'] }},
+          { test: /\.css$/, loader: "style!css!postcss" },
+          { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!postcss!sass") }
         ]
     },
     plugins: [
         new ExtractTextPlugin('assets/css/[name].css'),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin(),
+        new LiveReloadPlugin()
     ],
     resolve: {
         extensions: ['', '.js', '.scss'],

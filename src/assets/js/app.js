@@ -1,10 +1,12 @@
-require("./test");
-require("../css/app");
+import './test';
+import '../css/app';
 
-(function () {
-  // Cutting the Mustard
-  if ('querySelector' in document && 'addEventListener' in window) {
-    document.addEventListener('DOMContentLoaded', function () {
-    });
-  }
-})();
+import Vue from 'vue';
+
+new Vue({
+  el: 'body',
+  data: {},
+  directives: {},
+  components: {}
+});
+
