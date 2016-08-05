@@ -1,0 +1,13 @@
+footer {
+  width: 100%;
+  height: 400px;
+  background: purple;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: white;
+    font-size: 2rem;
+  }
+}

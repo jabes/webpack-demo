@@ -1,70 +1,59 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('webpack-uglify-js-plugin');
-
-const METADATA = {
-  title: 'Webpack Demo',
-  baseUrl: '/',
-  host: 'localhost',
-  port: 3000
-};
-
+// const UglifyJsPlugin = require('webpack-uglify-js-plugin');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const srcPath = path.resolve(__dirname, 'src');
 const distPath = path.resolve(__dirname, 'dist');
 
 module.exports = {
-    metadata: METADATA,
-    entry: [
-      path.resolve(srcPath, 'assets', 'js', 'app.js')
-    ],
-    output: {
-        path: path.resolve(distPath, 'assets'),
-        publicPath: '/assets/',
-        filename: 'js/bundle.js'
+  entry: [
+    path.resolve(srcPath, 'main.js')
+  ],
+  output: {
+    path: path.resolve(distPath),
+    publicPath: '/dist/',
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      {test: /\.vue$/, loader: 'vue'},
+      {test: /\.js$/, loader: 'babel', exclude: [nodeModulesPath, distPath]},
+      {test: /\.css$/, loader: 'style!css!postcss'},
+      {test: /\.scss$/, loader: 'style!css!postcss!sass'}
+    ]
+  },
+  plugins: [
+    // new UglifyJsPlugin({
+    //   cacheFolder: path.resolve(__dirname, 'dist/cached_uglify'),
+    //   debug: false,
+    //   minimize: true,
+    //   sourceMap: false,
+    //   output: {
+    //     comments: false
+    //   },
+    //   compressor: {
+    //     warnings: false
+    //   }
+    // })
+  ],
+  resolve: {
+    extensions: ['', '.js', '.scss'],
+    root: [srcPath]
+  },
+  babel: {
+    presets: ['es2015'],
+    plugins: ['transform-runtime']
+  },
+  postcss: function () {
+    return [autoprefixer];
+  },
+  devServer: {
+    host: 'localhost',
+    port: 3000,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
     },
-    module: {
-        loaders: [
-          { test: /\.js$/, loader: 'babel', exclude: [nodeModulesPath], query: { presets: ['es2015'] }},
-          { test: /\.css$/, loader: 'style!css!postcss' },
-          { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass') }
-        ]
-    },
-    plugins: [
-        new ExtractTextPlugin('css/bundle.css'),
-        new HtmlWebpackPlugin({
-          template: path.resolve(srcPath, 'index.html'),
-          filename: path.resolve(distPath, 'index.html')
-        }),
-        new UglifyJsPlugin({
-          cacheFolder: path.resolve(__dirname, 'dist/cached_uglify'),
-          debug: false,
-          minimize: true,
-          sourceMap: false,
-          output: {
-            comments: false
-          },
-          compressor: {
-            warnings: false
-          }
-        })
-    ],
-    resolve: {
-        extensions: ['', '.js', '.scss'],
-        root: [srcPath]
-    },
-    postcss: function () {
-        return [autoprefixer];
-    },
-    devServer: {
-      port: METADATA.port,
-      host: METADATA.host,
-      watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000
-      },
-      contentBase: distPath
-    }
+    contentBase: __dirname
+  }
 };
