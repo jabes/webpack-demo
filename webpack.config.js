@@ -1,6 +1,6 @@
 const path = require('path');
-const autoprefixer = require('autoprefixer');
-// const UglifyJsPlugin = require('webpack-uglify-js-plugin');
+const webpack = require('webpack');
+
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const srcPath = path.resolve(__dirname, 'src');
 const distPath = path.resolve(__dirname, 'dist');
@@ -23,18 +23,11 @@ module.exports = {
     ]
   },
   plugins: [
-    // new UglifyJsPlugin({
-    //   cacheFolder: path.resolve(__dirname, 'dist/cached_uglify'),
-    //   debug: false,
-    //   minimize: true,
-    //   sourceMap: false,
-    //   output: {
-    //     comments: false
-    //   },
-    //   compressor: {
-    //     warnings: false
-    //   }
-    // })
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ],
   resolve: {
     extensions: ['', '.js', '.scss'],
@@ -45,7 +38,9 @@ module.exports = {
     plugins: ['transform-runtime']
   },
   postcss: function () {
-    return [autoprefixer];
+    return [
+      require('autoprefixer')
+    ];
   },
   devServer: {
     host: 'localhost',
