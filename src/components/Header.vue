@@ -10,6 +10,6 @@
   </header>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
   @import './../stylesheets/components/header.scss'
 </style>

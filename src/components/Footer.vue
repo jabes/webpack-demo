@@ -4,6 +4,6 @@
   </footer>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
   @import './../stylesheets/components/footer.scss'
 </style>
