@@ -1,6 +1,10 @@
 # Webpack Demo
 
-#### Featured Technologies
+A quick demonstration of how to bundle Vue.js [single file components] with webpack.
+
+![](screenshot.png)
+
+#### Featured Libraries
 
 * Webpack
 * PostCSS/Autoprefixer
@@ -15,4 +19,9 @@
 
 #### How To Use
 
-[localhost:3000/webpack-dev-server/](localhost:3000/webpack-dev-server/)
+Open this URL in your browser.
+
+[http://localhost:3000](http://localhost:3000)
+
+[single file components]: https://vuejs.org/v2/guide/single-file-components.html
+[webpack]: https://webpack.github.io/

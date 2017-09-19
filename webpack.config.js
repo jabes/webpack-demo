@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const srcPath = path.resolve(__dirname, 'src');
-const distPath = path.resolve(__dirname, 'dist');
+const distPath = path.resolve(__dirname, 'public');
 
 module.exports = {
   entry: [
@@ -11,7 +11,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(distPath),
-    publicPath: '/dist/',
+    publicPath: '/public/',
     filename: 'bundle.js'
   },
   module: {
