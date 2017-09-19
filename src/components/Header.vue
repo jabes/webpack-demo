@@ -1,11 +1,11 @@
 <template>
   <header>
     <nav>
-      <a href="/page">Page</a>
-      <a href="/page">Page</a>
-      <a href="/page">Page</a>
-      <a href="/page">Page</a>
-      <a href="/page">Page</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
     </nav>
   </header>
 </template>

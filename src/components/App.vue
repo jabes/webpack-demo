@@ -21,3 +21,7 @@
     }
   }
 </script>
+
+<style lang="sass">
+  @import './../stylesheets/components/app.scss'
+</style>
