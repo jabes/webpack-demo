@@ -9,7 +9,7 @@
     "email": "bull.justin@gmail.com",
     "url": "http://jbull.ca/"
   },
-  "homepage": "https://jabes.github.io/webpack-demo",
+  "homepage": "https://jabes.github.io/webpack-demo/public/",
   "repository": {
     "type": "git",
     "url": "https://github.com/jabes/webpack-demo"
