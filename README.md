@@ -1,6 +1,6 @@
 # Webpack Demo
 
-A quick demonstration of how to bundle Vue.js [single file components] with webpack.
+A quick demonstration of how to bundle Vue.js [single file components] with [webpack].
 
 ![](screenshot.png)
 
